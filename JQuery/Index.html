@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.0.3.js"></script>
+    <script src="Scripts/class.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var result = "";
+            $('a').filter($("[id=a1],[id=a2]")).each(function () {
+                //alert(this.id);
+                result+=this.id +";";
+            })
+
+            $('#result').text(result);
+
+            $("p").html(".attr( 'checked' ): <b>" + $(":input").attr("checked") + "</b><br>" +
+                    ".prop( 'checked' ): <b>" + $(":input").prop("checked") + "</b><br>" +
+                    ".is( ':checked' ): <b>" + $(":input").is(":checked") + "</b>");
+        });
+
+        // let's create an alien object
+        var alien = {
+            kind: 'alien'
+        }
+
+        // and a person object
+        var person = {
+            kind: 'person'
+        }
+
+        // and an object called 'zack'
+        var zack = {};
+
+        // assign alien as the prototype of zack
+        zack.__proto__ = alien
+
+        function Foo() {
+        }
+
+        //var zack = new Person('Zack');
+
+        ObjMaker = function () { this.a = 'first'; };
+        ObjMaker.prototype.b = 'second';
+
+        SubObjMaker = function () { };
+        SubObjMaker.prototype = new ObjMaker();
+
+        SubObjMaker.prototype.c = 'third';
+        obj2 = new SubObjMaker();
+
+        obj2.c;
+
+        bj1 = new ObjMaker();
+
+        //ob1.c;
+
+        function MyConstructor() { };
+        var myobject = new MyConstructor();
+        myobject.constructor == MyConstructor;
+
+        function A() {
+            this.nameA = 'a';
+        };
+
+        function B() {
+            this.nameB = 'b';
+        };
+
+        B.prototype = new A;
+
+        B.prototype.constructor = B;
+
+        var bIns = new B();
+
+        bIns.nameB;
+
+        var DataSource = Class.extend({
+            total: function () {
+                throw 'Returns total number of records - to be implemented by inheritors';
+            }
+        });
+
+        var ds = new DataSource();
+        ds.total();
+
+    </script>
+
+</head>
+<body>
+    <div id="div1" style="background-color: azure">
+        <a id="a1" name="txt1">DIV 1</a>
+    </div>
+    <div id="div2" style="background-color: red">
+        <a id="a2" name="txt2">DIV 2</a>
+    </div>
+    <div id="div3" style="background-color: aqua">
+        <a id="a3" name="txt3">DIV 3</a>
+    </div>
+    <a id="result"></a>
+    <br />
+    <div>
+        <label>check</label>
+        <input type="checkbox" checked="checked" />
+        <p></p>
+    </div>
+</body>
+</html>
